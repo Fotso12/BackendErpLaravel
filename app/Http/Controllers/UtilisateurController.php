@@ -287,12 +287,12 @@ class UtilisateurController extends Controller
         $utilisateur = $request->user();
 
         // Vérifier l'ancien mot de passe
-        if (!Hash::check($request->current_password, $utilisateur->mot_de_passe)) {
+        if (!Hash::check($request->current_mot_de_passe, $utilisateur->mot_de_passe)) {
             return response()->json(['message' => 'Le mot de passe actuel est incorrect.'], 400);
         }
 
         // Mettre à jour le mot de passe
-        $utilisateur->mot_de_passe = Hash::make($request->new_password);
+        $utilisateur->mot_de_passe = Hash::make($request->new_mot_de_passe);
         $utilisateur->save();
 
         return response()->json(['message' => 'Mot de passe modifié avec succès.']);

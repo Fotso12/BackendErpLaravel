@@ -18,10 +18,24 @@ class Utilisateur extends Authenticatable
         'nom',
         'prenom',
         'email',
-        'password',
+        'mot_de_passe',
         'role_id',
         'actif'
     ];
+
+    // Champs cachés dans les réponses JSON
+    protected $hidden = [
+        'mot_de_passe',
+        'remember_token',
+    ];
+
+    /**
+     * Retourne le mot de passe pour l'authentification.
+     */
+    public function getAuthPassword()
+    {
+        return $this->mot_de_passe;
+    }
 
     /**
      * Un utilisateur appartient à un rôle.
